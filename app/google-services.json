@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "735793456353",
+    "project_id": "consultorio-5ab25",
+    "storage_bucket": "consultorio-5ab25.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:735793456353:android:9cc30cb8547f6a6b2903a0",
+        "android_client_info": {
+          "package_name": "com.marcelo.piscologo.consultorio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "735793456353-vv3fgj2cm0bm8t60nftghq600iev563m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpiIns2mN6wpKXxfZkR008W5lMj6PHzJU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "735793456353-vv3fgj2cm0bm8t60nftghq600iev563m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
