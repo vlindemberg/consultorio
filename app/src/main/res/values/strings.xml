@@ -13,4 +13,7 @@
     <string name="register_name">Nome</string>
     <string name="register_surname">Sobrenome</string>
     <string name="register_create_account_button">Criar conta</string>
+    <string name="forgot_pass_button">Enviar</string>
+    <string name="forgot_pass_title">Problemas para entrar?</string>
+    <string name="forgot_pass_subtitle">Insira o seu email e enviaremos um link\npara você voltar a acessar a sua conta.</string>
 </resources>

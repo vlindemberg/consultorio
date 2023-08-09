@@ -1,4 +1,4 @@
-package com.marcelo.piscologo.consultorio.presentation.authentication.login
+package com.marcelo.piscologo.consultorio.presentation.authentication
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
-    private val viewModel: LoginViewModel by viewModels()
+    private val viewModel: AuthenticationViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -44,15 +44,20 @@ class LoginFragment : Fragment() {
                 LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
             )
         }
+        binding.forgotPassLabel.setOnClickListener {
+            findNavController().navigate(
+                LoginFragmentDirections.actionLoginFragmentToForgotPasswordFragment()
+            )
+        }
         lifecycleScope.launch {
             viewModel.loginFlow.collect { state ->
                 when (state) {
-                    is LoginState.Loading -> {
+                    is AuthenticationState.Loading -> {
                         binding.loginBtn.text = ""
                         binding.loginProgress.visibility = View.VISIBLE
                     }
 
-                    is LoginState.Failure -> {
+                    is AuthenticationState.Failure -> {
                         binding.loginBtn.text = resources.getString(R.string.login)
                         binding.loginProgress.visibility = View.GONE
                         binding.loginBtn.text = resources.getString(R.string.login)
@@ -61,7 +66,7 @@ class LoginFragment : Fragment() {
                             .show()
                     }
 
-                    is LoginState.Success -> {
+                    is AuthenticationState.Success -> {
                         binding.loginBtn.text = resources.getString(R.string.login)
                         binding.loginProgress.visibility = View.GONE
                         findNavController().navigate(

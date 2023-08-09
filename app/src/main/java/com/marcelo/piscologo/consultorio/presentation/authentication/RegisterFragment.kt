@@ -1,4 +1,4 @@
-package com.marcelo.piscologo.consultorio.presentation.authentication.register
+package com.marcelo.piscologo.consultorio.presentation.authentication
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,8 +18,8 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
 
-    lateinit var binding: FragmentRegisterBinding
-    val viewModel: RegisterViewModel by viewModels()
+    private lateinit var binding: FragmentRegisterBinding
+    private val viewModel: AuthenticationViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,12 +45,12 @@ class RegisterFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.register.collect { state ->
                 when (state) {
-                    is RegisterState.Loading -> {
+                    is AuthenticationState.Loading -> {
                         binding.bntRegister.text = ""
                         binding.registerProgress.visibility = View.VISIBLE
                     }
 
-                    is RegisterState.Failure -> {
+                    is AuthenticationState.Failure -> {
                         binding.bntRegister.text =
                             resources.getString(R.string.register_create_account_button)
                         binding.registerProgress.visibility = View.GONE
@@ -58,7 +58,7 @@ class RegisterFragment : Fragment() {
                             .show()
                     }
 
-                    is RegisterState.Success -> {
+                    is AuthenticationState.Success -> {
                         binding.bntRegister.text =
                             resources.getString(R.string.register_create_account_button)
                         binding.registerProgress.visibility = View.GONE
