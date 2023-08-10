@@ -20,6 +20,7 @@
             android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
             app:destination="@id/forgotPasswordFragment" />
     </fragment>
+
     <include app:graph="@navigation/app_navigation" />
 
     <fragment

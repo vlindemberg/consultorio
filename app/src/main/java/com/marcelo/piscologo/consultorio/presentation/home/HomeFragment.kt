@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.marcelo.piscologo.consultorio.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
@@ -20,5 +21,4 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         return binding.root
     }
-
 }
