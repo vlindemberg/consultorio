@@ -6,4 +6,5 @@
     <color name="secondary_variant">#727172</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background">#f8f3f6</color>
 </resources>

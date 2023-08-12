@@ -11,7 +11,7 @@
         android:layout_margin="16dp"
         android:contentDescription="@string/login_icon_description"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_default"
+        android:src="@drawable/login_ic"
         app:layout_constraintBottom_toTopOf="@id/forgot_pass_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +24,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/josefinsans_regular"
         android:text="@string/login"
-        android:textColor="@color/black"
+        android:textColor="@color/primary"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
         android:layout_marginTop="4dp"
         android:fontFamily="@font/josefinsans_regular"
         android:text="@string/login_subtitle"
-        android:textColor="@color/black"
+        android:textColor="@color/primary"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
         android:fontFamily="@font/josefinsans_regular"
         android:labelFor="@+id/etEmail"
         android:text="@string/email"
-        android:textColor="@color/black"
+        android:textColor="@color/primary"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/forgot_pass_subtitle" />
@@ -85,7 +85,7 @@
         android:fontFamily="@font/josefinsans_regular"
         android:labelFor="@id/etPassword"
         android:text="@string/password"
-        android:textColor="@color/black"
+        android:textColor="@color/primary"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/etEmail"
         app:layout_constraintHorizontal_bias="0.0"
@@ -116,7 +116,7 @@
         android:fontFamily="@font/josefinsans_regular"
         android:padding="5dp"
         android:text="@string/forgot_password"
-        android:textColor="@color/black"
+        android:textColor="@color/primary"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/etEmail"
         app:layout_constraintTop_toBottomOf="@+id/etPassword" />
@@ -129,7 +129,7 @@
         android:fontFamily="@font/josefinsans_regular"
         android:padding="5dp"
         android:text="@string/havent_registered_yet"
-        android:textColor="@color/black"
+        android:textColor="@color/primary"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/etEmail"
         app:layout_constraintHorizontal_bias="0.0"
@@ -154,8 +154,7 @@
             android:text="@string/submit_login"
             android:textAllCaps="false"
             android:textAppearance="@style/SubTitleStyle"
-            android:textColor="@color/white"
-            app:backgroundTint="@color/black" />
+            android:textColor="@color/white" />
 
         <ProgressBar
             android:id="@+id/login_progress"

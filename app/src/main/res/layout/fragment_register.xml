@@ -11,7 +11,7 @@
         android:layout_margin="16dp"
         android:contentDescription="@string/login_icon_description"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_default"
+        android:src="@drawable/login_ic"
         app:layout_constraintBottom_toTopOf="@id/tvTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +24,7 @@
         android:layout_marginTop="25dp"
         android:fontFamily="@font/josefinsans_bold"
         android:text="@string/register_title"
-        android:textColor="@color/black"
+        android:textColor="@color/primary"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/josefinsans_regular"
         android:text="@string/register_subtitle"
-        android:textColor="@color/black"
+        android:textColor="@color/primary"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +51,7 @@
         android:fontFamily="@font/josefinsans_regular"
         android:labelFor="@+id/etRegisterName"
         android:text="@string/register_name"
-        android:textColor="@color/black"
+        android:textColor="@color/primary"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSubtitle" />
@@ -86,7 +86,7 @@
         android:fontFamily="@font/josefinsans_regular"
         android:labelFor="@+id/etRegisterSurname"
         android:text="@string/register_surname"
-        android:textColor="@color/black"
+        android:textColor="@color/primary"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etRegisterName" />
@@ -122,7 +122,7 @@
         android:fontFamily="@font/josefinsans_regular"
         android:labelFor="@+id/etRegisterEmail"
         android:text="@string/email"
-        android:textColor="@color/black"
+        android:textColor="@color/primary"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etRegisterSurname" />
@@ -156,7 +156,7 @@
         android:fontFamily="@font/josefinsans_regular"
         android:labelFor="@+id/etRegisterPassword"
         android:text="@string/password"
-        android:textColor="@color/black"
+        android:textColor="@color/primary"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/etRegisterEmail"
         app:layout_constraintHorizontal_bias="0.0"
@@ -198,8 +198,7 @@
             android:text="@string/register_create_account_button"
             android:textAllCaps="false"
             android:textAppearance="@style/SubTitleStyle"
-            android:textColor="@color/white"
-            app:backgroundTint="@color/black" />
+            android:textColor="@color/white" />
 
         <ProgressBar
             android:id="@+id/registerProgress"
