@@ -19,4 +19,7 @@
     <string name="nav_menu_agenda">Agenda</string>
     <string name="nav_menu_pacientes">Pacientes</string>
     <string name="nav_menu_settings">Settings</string>
+    <string name="logout">Sair</string>
+    <string name="profile_name">Marcelo Lindemberg</string>
+    <string name="profile_email">lindembergmarcelo@gmail.com</string>
 </resources>

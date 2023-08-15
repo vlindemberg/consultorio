@@ -76,7 +76,12 @@ class AuthRepositoryImpl(
         }
     }
 
-    override suspend fun logout() {
-        auth.signOut()
+    override suspend fun logout(): AuthenticationState<*> {
+        return try {
+            auth.signOut()
+            AuthenticationState.Success(true)
+        } catch (e: Exception) {
+            AuthenticationState.Failure(e)
+        }
     }
 }

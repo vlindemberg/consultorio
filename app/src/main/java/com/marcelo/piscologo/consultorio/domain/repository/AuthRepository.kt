@@ -6,9 +6,9 @@ import com.marcelo.piscologo.consultorio.presentation.authentication.Authenticat
 
 interface AuthRepository {
     val currentUser: FirebaseUser?
-    suspend fun loginUser(email: String, password: String) : AuthenticationState<FirebaseUser>
+    suspend fun loginUser(email: String, password: String): AuthenticationState<FirebaseUser>
     suspend fun registerUser(email: String, password: String, user: User): AuthenticationState<*>
     suspend fun updateUserInfo(user: User, result: (AuthenticationState<String>) -> Unit)
     suspend fun forgotPassword(email: String): AuthenticationState<*>
-    suspend fun logout()
+    suspend fun logout(): AuthenticationState<*>
 }

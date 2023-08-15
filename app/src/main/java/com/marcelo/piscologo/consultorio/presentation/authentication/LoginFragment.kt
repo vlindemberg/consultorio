@@ -60,8 +60,6 @@ class LoginFragment : Fragment() {
                     is AuthenticationState.Failure -> {
                         binding.loginBtn.text = resources.getString(R.string.login)
                         binding.loginProgress.visibility = View.GONE
-                        binding.loginBtn.text = resources.getString(R.string.login)
-                        binding.loginProgress.visibility = View.GONE
                         Toast.makeText(requireContext(), state.exception.message, Toast.LENGTH_LONG)
                             .show()
                     }

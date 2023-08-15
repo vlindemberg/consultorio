@@ -25,6 +25,9 @@ class AuthenticationViewModel @Inject constructor(
     private val _forgotPassword = MutableStateFlow<AuthenticationState<*>?>(null)
     val forgotPassword: StateFlow<AuthenticationState<*>?> = _forgotPassword
 
+    private val _logout = MutableStateFlow<AuthenticationState<*>?>(null)
+    val logout: StateFlow<AuthenticationState<*>?> = _logout
+
     val currentUser: FirebaseUser?
         get() = repository.currentUser
 
@@ -63,8 +66,8 @@ class AuthenticationViewModel @Inject constructor(
         _forgotPassword.value = repository.forgotPassword(email)
     }
 
-    suspend fun logout() {
-        repository.logout()
-        _loginFlow.value = null
+     fun logout() = viewModelScope.launch {
+        _logout.value = AuthenticationState.Loading
+        _logout.value = repository.logout()
     }
 }
