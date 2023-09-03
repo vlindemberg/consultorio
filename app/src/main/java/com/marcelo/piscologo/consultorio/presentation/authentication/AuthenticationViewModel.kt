@@ -16,8 +16,8 @@ class AuthenticationViewModel @Inject constructor(
     private val repository: AuthRepository
 ) : ViewModel() {
 
-    private val _loginFlow = MutableStateFlow<AuthenticationState<FirebaseUser>?>(null)
-    val loginFlow: StateFlow<AuthenticationState<FirebaseUser>?> = _loginFlow
+    private val _loginFlow = MutableStateFlow<AuthenticationState<*>?>(null)
+    val loginFlow: StateFlow<AuthenticationState<*>?> = _loginFlow
 
     private val _register = MutableStateFlow<AuthenticationState<*>?>(null)
     val register: StateFlow<AuthenticationState<*>?> = _register

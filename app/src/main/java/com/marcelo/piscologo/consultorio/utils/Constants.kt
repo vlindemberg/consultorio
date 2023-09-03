@@ -2,6 +2,7 @@ package com.marcelo.piscologo.consultorio.utils
 
 object FireStoreCollection{
     val USER = "user"
+    val PATIENT = "patient"
 }
 
 object FireDatabase{
@@ -10,6 +11,7 @@ object FireDatabase{
 
 object FireStoreDocumentField {
     val USER_ID = "user_id"
+    val NAME = "name"
 }
 
 object SharedPrefConstants {

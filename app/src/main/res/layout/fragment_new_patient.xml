@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <TextView
+        android:id="@+id/new_patient_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/josefinsans_regular"
+        android:text="@string/new_patient_title"
+        android:textAlignment="center"
+        android:textColor="@color/primary"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/new_patient_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/josefinsans_regular"
+        android:text="@string/new_patient_subtitle"
+        android:textAlignment="center"
+        android:textColor="@color/primary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_patient_title" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/rlButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_patient_subtitle">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_contact_info_session"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/josefinsans_bold"
+                android:text="@string/contact_info_session"
+                android:textColor="@color/primary"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/contact_info_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_contact_info_session" />
+
+            <TextView
+                android:id="@+id/tvNewPatientName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/josefinsans_regular"
+                android:labelFor="@+id/etNewPatientName"
+                android:text="@string/new_patient_name"
+                android:textColor="@color/primary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contact_info_divider" />
+
+            <EditText
+                android:id="@+id/etNewPatientName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints="0"
+                android:background="@drawable/black_white_rect_bg"
+                android:fontFamily="@font/josefinsans_regular"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNewPatientName" />
+
+            <TextView
+                android:id="@+id/tvNewPatientBirthDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/josefinsans_regular"
+                android:labelFor="@+id/etNewPatientBirthDate"
+                android:text="@string/new_patient_birthDate"
+                android:textColor="@color/primary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etNewPatientName" />
+
+            <EditText
+                android:id="@+id/etNewPatientBirthDate"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints="0"
+                android:background="@drawable/black_white_rect_bg"
+                android:fontFamily="@font/josefinsans_regular"
+                android:inputType="date"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNewPatientBirthDate" />
+
+            <TextView
+                android:id="@+id/tvNewPatientAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/josefinsans_regular"
+                android:labelFor="@+id/etNewPatientAge"
+                android:text="@string/new_patient_age"
+                android:textColor="@color/primary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/etNewPatientAge"
+                app:layout_constraintTop_toBottomOf="@+id/etNewPatientName" />
+
+            <EditText
+                android:id="@+id/etNewPatientAge"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints="0"
+                android:background="@drawable/black_white_rect_bg"
+                android:fontFamily="@font/josefinsans_regular"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/etNewPatientBirthDate"
+                app:layout_constraintTop_toBottomOf="@+id/tvNewPatientAge" />
+
+            <TextView
+                android:id="@+id/tvNewPatientGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/josefinsans_regular"
+                android:labelFor="@+id/etNewPatientAge"
+                android:text="@string/new_patient_gender"
+                android:textColor="@color/primary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etNewPatientBirthDate" />
+
+            <RadioGroup
+                android:id="@+id/rgGender"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNewPatientGender">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:buttonTint="@color/primary"
+                    android:fontFamily="@font/josefinsans_regular"
+                    android:padding="4dp"
+                    android:text="@string/gender_masc"
+                    android:textColor="@color/primary"
+                    android:textSize="16sp"
+                    tools:checked="true" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/primary"
+                    android:fontFamily="@font/josefinsans_regular"
+                    android:padding="4dp"
+                    android:text="@string/gender_fem"
+                    android:textColor="@color/primary"
+                    android:textSize="16sp" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/tv_address_session"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/josefinsans_bold"
+                android:text="@string/address_session"
+                android:textColor="@color/primary"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rgGender" />
+
+            <View
+                android:id="@+id/address_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_address_session" />
+
+            <TextView
+                android:id="@+id/tvNewPatientStreet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/josefinsans_regular"
+                android:labelFor="@+id/etNewPatientStreet"
+                android:text="@string/new_patient_street"
+                android:textColor="@color/primary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/address_divider" />
+
+            <EditText
+                android:id="@+id/etNewPatientStreet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints="0"
+                android:background="@drawable/black_white_rect_bg"
+                android:fontFamily="@font/josefinsans_regular"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNewPatientStreet" />
+
+            <TextView
+                android:id="@+id/tvNewPatientDistrict"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/josefinsans_regular"
+                android:labelFor="@+id/etNewPatientDistrict"
+                android:text="@string/new_patient_district"
+                android:textColor="@color/primary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etNewPatientStreet" />
+
+            <EditText
+                android:id="@+id/etNewPatientDistrict"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints="0"
+                android:background="@drawable/black_white_rect_bg"
+                android:fontFamily="@font/josefinsans_regular"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNewPatientDistrict" />
+
+            <TextView
+                android:id="@+id/tvNewPatientCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/josefinsans_regular"
+                android:labelFor="@+id/etNewPatientCity"
+                android:text="@string/new_patient_city"
+                android:textColor="@color/primary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etNewPatientDistrict" />
+
+            <EditText
+                android:id="@+id/etNewPatientCity"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints="0"
+                android:background="@drawable/black_white_rect_bg"
+                android:fontFamily="@font/josefinsans_regular"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNewPatientCity" />
+
+            <TextView
+                android:id="@+id/tvNewPatientState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/josefinsans_regular"
+                android:labelFor="@+id/etNewPatientAge"
+                android:text="@string/new_patient_state"
+                android:textColor="@color/primary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/tilNewPatientState"
+                app:layout_constraintTop_toBottomOf="@+id/etNewPatientDistrict" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilNewPatientState"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/etNewPatientCity"
+                app:layout_constraintTop_toBottomOf="@+id/tvNewPatientState">
+
+                <AutoCompleteTextView
+                    android:id="@+id/tvNewPatientStates"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:inputType="none"
+                    android:text="@string/select_state" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvNewPatientCep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/josefinsans_regular"
+                android:labelFor="@+id/etNewPatientCty"
+                android:text="@string/new_patient_cep"
+                android:textColor="@color/primary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etNewPatientCity" />
+
+            <EditText
+                android:id="@+id/etNewPatientCep"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints="0"
+                android:background="@drawable/black_white_rect_bg"
+                android:fontFamily="@font/josefinsans_regular"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNewPatientCep" />
+
+            <TextView
+                android:id="@+id/tvNewPatientNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/josefinsans_regular"
+                android:labelFor="@+id/etNewPatientNumber"
+                android:text="@string/new_patient_number"
+                android:textColor="@color/primary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/tilNewPatientState"
+                app:layout_constraintTop_toBottomOf="@+id/tilNewPatientState" />
+
+            <EditText
+                android:id="@+id/etNewPatientNumber"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:autofillHints="0"
+                android:background="@drawable/black_white_rect_bg"
+                android:fontFamily="@font/josefinsans_regular"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/tvNewPatientNumber"
+                app:layout_constraintTop_toBottomOf="@+id/tvNewPatientNumber" />
+
+            <TextView
+                android:id="@+id/tv_contact_session"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/josefinsans_bold"
+                android:text="@string/contact_session"
+                android:textColor="@color/primary"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etNewPatientCep" />
+
+            <View
+                android:id="@+id/contact_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_contact_session" />
+
+            <TextView
+                android:id="@+id/tvNewPatientEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/josefinsans_regular"
+                android:labelFor="@+id/etNewPatientEmail"
+                android:text="@string/email"
+                android:textColor="@color/primary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contact_divider" />
+
+            <EditText
+                android:id="@+id/etNewPatientEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints="0"
+                android:background="@drawable/black_white_rect_bg"
+                android:fontFamily="@font/josefinsans_regular"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNewPatientEmail" />
+
+            <TextView
+                android:id="@+id/tvNewPatientPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/josefinsans_regular"
+                android:labelFor="@+id/etNewPatientEmail"
+                android:text="@string/new_patient_phone"
+                android:textColor="@color/primary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etNewPatientEmail" />
+
+            <EditText
+                android:id="@+id/etNewPatientPhone"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints="0"
+                android:background="@drawable/black_white_rect_bg"
+                android:fontFamily="@font/josefinsans_regular"
+                android:inputType="phone"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNewPatientPhone" />
+
+            <TextView
+                android:id="@+id/tvNewPatientSecondaryPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/josefinsans_regular"
+                android:labelFor="@+id/etNewPatientEmail"
+                android:text="@string/new_patient_secondary_phone"
+                android:textColor="@color/primary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/etNewPatientSecondaryPhone"
+                app:layout_constraintTop_toBottomOf="@+id/etNewPatientEmail" />
+
+            <EditText
+                android:id="@+id/etNewPatientSecondaryPhone"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints="0"
+                android:background="@drawable/black_white_rect_bg"
+                android:fontFamily="@font/josefinsans_regular"
+                android:inputType="phone"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/etNewPatientPhone"
+                app:layout_constraintTop_toBottomOf="@+id/tvNewPatientSecondaryPhone" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/rlButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/new_patient_bnt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/black_rect_bg"
+            android:text="@string/new_patient_submit"
+            android:textAllCaps="false"
+            android:textAppearance="@style/SubTitleStyle"
+            android:textColor="@color/background" />
+
+        <ProgressBar
+            android:id="@+id/new_patient_progress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="16dp"
+            android:elevation="10dp"
+            android:indeterminateTint="@color/white"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

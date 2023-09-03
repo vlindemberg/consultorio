@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/rail_nav_menu"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/auth_navigation" />
+        app:navGraph="@navigation/app_navigation" />
 
     <com.google.android.material.navigationrail.NavigationRailView
         android:id="@+id/rail_nav_menu"

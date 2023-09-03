@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.marcelo.piscologo.consultorio.R
 import com.marcelo.piscologo.consultorio.data.model.User
 import com.marcelo.piscologo.consultorio.databinding.FragmentRegisterBinding
+import com.marcelo.piscologo.consultorio.presentation.USER_ID
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -62,15 +63,19 @@ class RegisterFragment : Fragment() {
                         binding.bntRegister.text =
                             resources.getString(R.string.register_create_account_button)
                         binding.registerProgress.visibility = View.GONE
-                        findNavController().navigate(
-                            RegisterFragmentDirections.actionRegisterFragmentToHomeNavigation()
-                        )
+                        navigateToHome()
                     }
 
                     else -> {}
                 }
             }
         }
+    }
+
+    private fun navigateToHome() {
+        val bundle = Bundle()
+        bundle.putString(USER_ID, viewModel.currentUser?.uid.orEmpty())
+        findNavController().navigate(R.id.homeFragment, bundle)
     }
 
     private fun getUserObj(): User {

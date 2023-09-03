@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.marcelo.piscologo.consultorio.R
 import com.marcelo.piscologo.consultorio.databinding.FragmentLoginBinding
+import com.marcelo.piscologo.consultorio.presentation.USER_ID
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -67,14 +68,18 @@ class LoginFragment : Fragment() {
                     is AuthenticationState.Success -> {
                         binding.loginBtn.text = resources.getString(R.string.login)
                         binding.loginProgress.visibility = View.GONE
-                        findNavController().navigate(
-                            LoginFragmentDirections.actionLoginFragmentToHomeNavigation()
-                        )
+                        navigateToHome()
                     }
 
                     else -> {}
                 }
             }
         }
+    }
+
+    private fun navigateToHome() {
+        val bundle = Bundle()
+        bundle.putString(USER_ID, viewModel.currentUser?.uid.orEmpty())
+        findNavController().navigate(R.id.homeFragment, bundle)
     }
 }

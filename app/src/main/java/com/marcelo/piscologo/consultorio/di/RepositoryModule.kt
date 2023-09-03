@@ -3,7 +3,9 @@ package com.marcelo.piscologo.consultorio.di
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.marcelo.piscologo.consultorio.data.repository.AuthRepositoryImpl
+import com.marcelo.piscologo.consultorio.data.repository.PatientRepositoryImpl
 import com.marcelo.piscologo.consultorio.domain.repository.AuthRepository
+import com.marcelo.piscologo.consultorio.domain.repository.PatientRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,10 +18,18 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideLoginRepository(
+    fun provideAuthRepository(
         auth: FirebaseAuth,
         database: FirebaseFirestore,
     ): AuthRepository {
         return AuthRepositoryImpl(auth = auth, database = database)
+    }
+
+    @Provides
+    @Singleton
+    fun providePatientRepository(
+        database: FirebaseFirestore,
+    ): PatientRepository {
+        return PatientRepositoryImpl(database = database)
     }
 }

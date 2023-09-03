@@ -20,20 +20,29 @@ class AuthRepositoryImpl(
     override suspend fun loginUser(
         email: String,
         password: String,
-    ): AuthenticationState<FirebaseUser> {
+    ): AuthenticationState<*> {
         return try {
             val result = auth.signInWithEmailAndPassword(email, password).await()
-            AuthenticationState.Success(result.user!!)
+            val user = getLoggedUser(result.user?.uid.orEmpty())
+            AuthenticationState.Success(user)
         } catch (e: Exception) {
             e.printStackTrace()
             AuthenticationState.Failure(e)
         }
     }
 
+    private suspend fun getLoggedUser(userId: String): User? {
+        return try {
+            val user = database.collection(FireStoreCollection.USER).document(userId).get().await()
+            user.toObject(User::class.java)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            User()
+        }
+    }
+
     override suspend fun registerUser(
-        email: String,
-        password: String,
-        user: User
+        email: String, password: String, user: User
     ): AuthenticationState<*> {
         var state: AuthenticationState<*> = AuthenticationState.Failure(IllegalArgumentException())
         try {
@@ -54,11 +63,9 @@ class AuthRepositoryImpl(
     }
 
     override suspend fun updateUserInfo(user: User, result: (AuthenticationState<String>) -> Unit) {
-        val document = database.collection(FireStoreCollection.USER).document(user.id)
+        val document = database.collection(FireStoreCollection.USER).document(user.id.orEmpty())
         try {
-            document
-                .set(user)
-                .await()
+            document.set(user).await()
             result.invoke(AuthenticationState.Success("User Registered!"))
         } catch (e: Exception) {
             e.printStackTrace()
