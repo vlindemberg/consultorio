@@ -1,12 +1,25 @@
 package com.marcelo.piscologo.consultorio.data.model
 
+import android.os.Parcelable
+import com.google.firebase.firestore.PropertyName
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Address(
-    val id: String,
+    @PropertyName("id")
+    var id: String,
+    @PropertyName("street")
     val street: String,
+    @PropertyName("district")
     val district: String,
-    val phoneNumber: String,
-    val secondaryPhoneNumber: String?,
+    @PropertyName("number")
+    val number: String,
+    @PropertyName("city")
     val city: String,
+    @PropertyName("state")
     val state: String,
+    @PropertyName("cep")
     val cep: String,
-)
+) : Parcelable {
+    constructor() : this("", "", "", "", "", "", "")
+}

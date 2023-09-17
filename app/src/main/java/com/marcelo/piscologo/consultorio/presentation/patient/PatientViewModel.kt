@@ -7,6 +7,7 @@ import com.marcelo.piscologo.consultorio.domain.repository.PatientRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.launch
 import java.util.Locale
 import javax.inject.Inject
@@ -22,9 +23,22 @@ class PatientViewModel @Inject constructor(
     private val _newPatient = MutableStateFlow<PatientState<*>?>(null)
     val newPatient: StateFlow<PatientState<*>?> = _newPatient
 
+    private val _removePatient = MutableStateFlow<PatientState<*>?>(null)
+    val removePatient: StateFlow<PatientState<*>?> = _removePatient
+
     fun fetchPatients(userId: String) = viewModelScope.launch {
         _patients.value = PatientState.Loading
         _patients.value = patientRepository.getPatients(userId)
+    }
+
+    fun addPatient(patient: Patient) = viewModelScope.launch {
+        _newPatient.value = PatientState.Loading
+        _newPatient.value = patientRepository.addPatient(patient)
+    }
+
+    fun removePatient(patientId: String) = viewModelScope.launch {
+        _removePatient.value = PatientState.Loading
+        _removePatient.value = patientRepository.deletePatient(patientId)
     }
 
     fun filterList(

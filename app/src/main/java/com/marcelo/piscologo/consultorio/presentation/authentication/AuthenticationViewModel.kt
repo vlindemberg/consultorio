@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
 import com.marcelo.piscologo.consultorio.data.model.User
 import com.marcelo.piscologo.consultorio.domain.repository.AuthRepository
+import com.marcelo.piscologo.consultorio.utils.Session
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,6 +20,9 @@ class AuthenticationViewModel @Inject constructor(
     private val _loginFlow = MutableStateFlow<AuthenticationState<*>?>(null)
     val loginFlow: StateFlow<AuthenticationState<*>?> = _loginFlow
 
+    private val _validateSessionFlow = MutableStateFlow<AuthenticationState<*>?>(null)
+    val validateSessionFlow: StateFlow<AuthenticationState<*>?> = _validateSessionFlow
+
     private val _register = MutableStateFlow<AuthenticationState<*>?>(null)
     val register: StateFlow<AuthenticationState<*>?> = _register
 
@@ -32,9 +36,14 @@ class AuthenticationViewModel @Inject constructor(
         get() = repository.currentUser
 
     init {
-        if (repository.currentUser != null) {
-            _loginFlow.value = AuthenticationState.Success(repository.currentUser!!)
+        repository.currentUser?.let { user ->
+            validateSession(user.uid)
         }
+    }
+
+    private fun validateSession(userId: String) = viewModelScope.launch {
+        _validateSessionFlow.value = AuthenticationState.Loading
+        _validateSessionFlow.value = repository.validateSession(userId)
     }
 
     fun login(
@@ -66,8 +75,12 @@ class AuthenticationViewModel @Inject constructor(
         _forgotPassword.value = repository.forgotPassword(email)
     }
 
-     fun logout() = viewModelScope.launch {
+    fun logout() = viewModelScope.launch {
         _logout.value = AuthenticationState.Loading
         _logout.value = repository.logout()
+    }
+
+    fun session(user: User) {
+        Session.setLoggedUser(user)
     }
 }

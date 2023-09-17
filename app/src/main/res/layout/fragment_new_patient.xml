@@ -155,14 +155,51 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
                 android:autofillHints="0"
+                android:maxLength="2"
                 android:background="@drawable/black_white_rect_bg"
                 android:fontFamily="@font/josefinsans_regular"
-                android:inputType="text"
+                android:inputType="number"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/etNewPatientBirthDate"
                 app:layout_constraintTop_toBottomOf="@+id/tvNewPatientAge" />
+
+            <TextView
+                android:id="@+id/tvNewPatientCivilStatusTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/josefinsans_regular"
+                android:labelFor="@+id/etNewPatientAge"
+                android:text="@string/new_patient_civil_status"
+                android:textColor="@color/primary"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@+id/etNewPatientBirthDate"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilNewPatientCivilStatus"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/background"
+                app:layout_constraintTop_toBottomOf="@+id/tvNewPatientCivilStatusTitle"
+                app:layout_constraintStart_toStartOf="parent" >
+
+                <AutoCompleteTextView
+                    android:id="@+id/tvNewPatientCivilStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/background"
+                    android:inputType="none"
+                    android:text="@string/select_civil_status" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tvNewPatientGender"
@@ -176,7 +213,7 @@
                 android:textColor="@color/primary"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etNewPatientBirthDate" />
+                app:layout_constraintTop_toBottomOf="@+id/tilNewPatientCivilStatus" />
 
             <RadioGroup
                 android:id="@+id/rgGender"
@@ -189,6 +226,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvNewPatientGender">
 
                 <RadioButton
+                    android:id="@+id/rbMasc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -201,6 +239,7 @@
                     tools:checked="true" />
 
                 <RadioButton
+                    android:id="@+id/rbFem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/primary"
@@ -324,34 +363,24 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvNewPatientCity" />
 
-            <TextView
-                android:id="@+id/tvNewPatientState"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/josefinsans_regular"
-                android:labelFor="@+id/etNewPatientAge"
-                android:text="@string/new_patient_state"
-                android:textColor="@color/primary"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/tilNewPatientState"
-                app:layout_constraintTop_toBottomOf="@+id/etNewPatientDistrict" />
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilNewPatientState"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="180dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/background"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/etNewPatientCity"
-                app:layout_constraintTop_toBottomOf="@+id/tvNewPatientState">
+                app:layout_constraintBottom_toBottomOf="@+id/etNewPatientCity"
+                app:layout_constraintStart_toEndOf="@+id/etNewPatientCity" >
 
                 <AutoCompleteTextView
                     android:id="@+id/tvNewPatientStates"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@color/background"
                     android:inputType="none"
                     android:text="@string/select_state" />
 
@@ -380,7 +409,7 @@
                 android:autofillHints="0"
                 android:background="@drawable/black_white_rect_bg"
                 android:fontFamily="@font/josefinsans_regular"
-                android:inputType="text"
+                android:inputType="number"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -524,6 +553,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/etNewPatientPhone"
                 app:layout_constraintTop_toBottomOf="@+id/tvNewPatientSecondaryPhone" />
+
+            <ProgressBar
+                android:id="@+id/newPatientLoad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginEnd="32dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

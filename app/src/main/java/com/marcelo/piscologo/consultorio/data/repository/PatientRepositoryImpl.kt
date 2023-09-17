@@ -16,6 +16,8 @@ class PatientRepositoryImpl(
         return try {
             val document = database.collection(FireStoreCollection.PATIENT).document()
             patient.id = document.id
+            patient.address.id = document.id
+            patient.anamnesis.id = document.id
             document.set(patient).await()
             PatientState.Success(Pair(patient, "Paciente cadastrado!"))
         } catch (e: Exception) {

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -14,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.marcelo.piscologo.consultorio.R
 import com.marcelo.piscologo.consultorio.data.model.Patient
 import com.marcelo.piscologo.consultorio.databinding.FragmentPatientsBinding
-import com.marcelo.piscologo.consultorio.presentation.USER_ID
+import com.marcelo.piscologo.consultorio.utils.Session
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -25,7 +26,7 @@ class PatientsFragment : Fragment() {
     private val viewModel: PatientViewModel by viewModels()
 
     private lateinit var patientsAdapter: PatientsAdapter
-    private lateinit var patientsList: List<Patient>
+    private var patientsList: ArrayList<Patient> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +38,7 @@ class PatientsFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.fetchPatients(arguments?.getString(USER_ID).orEmpty())
+        viewModel.fetchPatients(Session.getLoggedUser()?.id.orEmpty())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,26 +49,62 @@ class PatientsFragment : Fragment() {
 
     private fun setupObservers() {
         binding.floatingActionButton.setOnClickListener {
-            findNavController().navigate(R.id.newPatientFragment)
+            findNavController()
+                .navigate(PatientsFragmentDirections.actionPatientsFragmentToNewPatientFragment())
         }
         lifecycleScope.launch {
             viewModel.patients.collect { state ->
                 when (state) {
                     is PatientState.Loading -> {
                         binding.patientsLoad.visibility = View.VISIBLE
-                        binding.nscPatients.visibility = View.GONE
-                        binding.ivEmptyList.visibility = View.VISIBLE
+                        binding.constraintLayout.visibility = View.GONE
+                        binding.ivEmptyList.visibility = View.GONE
                     }
 
                     is PatientState.Failure -> {
                         binding.patientsLoad.visibility = View.GONE
+                        binding.constraintLayout.visibility = View.GONE
+                        binding.ivEmptyList.visibility = View.VISIBLE
                         Toast.makeText(requireContext(), state.errorMessage, Toast.LENGTH_LONG)
                             .show()
                     }
 
                     is PatientState.Success -> {
                         binding.patientsLoad.visibility = View.GONE
-                        setupAdapter(state.patients)
+                        patientsList.addAll(state.patients)
+                        setupAdapter(patientsList)
+                    }
+
+                    else -> {}
+                }
+            }
+        }
+        lifecycleScope.launch {
+            viewModel.removePatient.collect { state ->
+                when (state) {
+                    is PatientState.Loading -> {
+                        binding.patientsLoad.visibility = View.VISIBLE
+                        binding.constraintLayout.visibility = View.GONE
+                        binding.ivEmptyList.visibility = View.GONE
+                    }
+
+                    is PatientState.Failure -> {
+                        binding.patientsLoad.visibility = View.GONE
+                        binding.constraintLayout.visibility = View.VISIBLE
+                        binding.ivEmptyList.visibility = View.GONE
+                        Toast.makeText(requireContext(), state.errorMessage, Toast.LENGTH_LONG)
+                            .show()
+                    }
+
+                    is PatientState.Success -> {
+                        binding.patientsLoad.visibility = View.GONE
+                        binding.constraintLayout.visibility = View.VISIBLE
+                        binding.ivEmptyList.visibility = View.GONE
+                        Toast.makeText(
+                            requireContext(),
+                            state.message.toString(),
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
 
                     else -> {}
@@ -76,28 +113,52 @@ class PatientsFragment : Fragment() {
         }
     }
 
-    private fun setupAdapter(patients: List<Patient>) {
+    private fun setupAdapter(patients: ArrayList<Patient>) {
         if (patients.isEmpty()) {
-            binding.nscPatients.visibility = View.GONE
+            binding.constraintLayout.visibility = View.GONE
             binding.ivEmptyList.visibility = View.VISIBLE
         } else {
             patientsList = patients
-            patientsAdapter = PatientsAdapter(patients, onItemClickListener = {
-                navigateToPatientsDetails(it.id)
-            })
+            patientsAdapter = PatientsAdapter(
+                patientList = patients,
+                onItemClickListener = { navigateToPatientsDetails(it.id) },
+                onItemLongClickListener = { id, position ->
+                    removePatient(id, position)
+                }
+            )
             binding.patientsRecyclerView.run {
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = patientsAdapter
                 isClickable = true
 
             }
-            binding.nscPatients.visibility = View.VISIBLE
+            binding.constraintLayout.visibility = View.VISIBLE
             binding.ivEmptyList.visibility = View.GONE
         }
     }
 
+    private fun removePatient(patientId: String, position: Int) {
+        val dialog = AlertDialog.Builder(requireContext())
+        dialog.setMessage(R.string.patients_remove_dialgo_title)
+            .setCancelable(false)
+            .setPositiveButton("Sim") { dialog, _ ->
+                viewModel.removePatient(patientId)
+                patientsList.removeAt(position)
+                patientsAdapter.notifyItemRemoved(position)
+                dialog.dismiss()
+            }
+            .setNegativeButton("Cancelar") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
     private fun navigateToPatientsDetails(patientId: String) {
-        TODO("Not yet implemented")
+        Toast.makeText(
+            context,
+            "Tela de detalhamento em construção",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
     private fun setupSearch() {

@@ -1,6 +1,7 @@
 package com.marcelo.piscologo.consultorio.presentation.patient
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.marcelo.piscologo.consultorio.data.model.Patient
@@ -8,7 +9,8 @@ import com.marcelo.piscologo.consultorio.databinding.PatientListItemBinding
 
 class PatientsAdapter(
     private var patientList: List<Patient>,
-    private val onItemClickListener: (patient: Patient) -> Unit
+    private val onItemClickListener: (patient: Patient) -> Unit,
+    private val onItemLongClickListener: (patientId: String, position: Int) -> Unit,
 ) : RecyclerView.Adapter<PatientsAdapter.PatientViewHolder>() {
 
     class PatientViewHolder(val binding: PatientListItemBinding) :
@@ -34,6 +36,10 @@ class PatientsAdapter(
         holder.binding.apply {
             name.text = patient.name
             this.root.setOnClickListener { onItemClickListener.invoke(patient) }
+            this.root.setOnLongClickListener {
+                onItemLongClickListener.invoke(patient.id, position)
+                true
+            }
         }
 
     }

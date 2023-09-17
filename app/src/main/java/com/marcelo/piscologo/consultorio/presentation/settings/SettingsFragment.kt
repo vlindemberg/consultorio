@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.marcelo.piscologo.consultorio.R
 import com.marcelo.piscologo.consultorio.databinding.FragmentSettingsBinding
 import com.marcelo.piscologo.consultorio.presentation.authentication.AuthenticationState
 import com.marcelo.piscologo.consultorio.presentation.authentication.AuthenticationViewModel
@@ -36,29 +35,26 @@ class SettingsFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        binding.logout.setOnClickListener {
+        binding.pbLogout.setOnClickListener {
             viewModel.logout()
         }
         lifecycleScope.launch {
             viewModel.logout.collect { state ->
                 when (state) {
                     is AuthenticationState.Loading -> {
-                        binding.logout.text = ""
-                        binding.logoutProgress.visibility = View.VISIBLE
+                        binding.settingsLoad.visibility = View.VISIBLE
                     }
 
                     is AuthenticationState.Failure -> {
-                        binding.logout.text = resources.getString(R.string.logout)
-                        binding.logoutProgress.visibility = View.GONE
+                        binding.settingsLoad.visibility = View.INVISIBLE
                         Toast.makeText(requireContext(), state.exception.message, Toast.LENGTH_LONG)
                             .show()
                     }
 
                     is AuthenticationState.Success -> {
-                        binding.logout.text = resources.getString(R.string.logout)
-                        binding.logoutProgress.visibility = View.GONE
+                        binding.settingsLoad.visibility = View.INVISIBLE
                         findNavController().navigate(
-                            R.id.loginFragment
+                            SettingsFragmentDirections.actionSettingsFragmentToLoginFragment()
                         )
                     }
 

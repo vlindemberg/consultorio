@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.navigation)
     alias(libs.plugins.google.services)
     kotlin("kapt") version "1.8.22"
+    id("kotlin-parcelize")
 }
 
 android {

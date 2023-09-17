@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import com.marcelo.piscologo.consultorio.R
 import com.marcelo.piscologo.consultorio.data.model.User
 import com.marcelo.piscologo.consultorio.databinding.FragmentRegisterBinding
-import com.marcelo.piscologo.consultorio.presentation.USER_ID
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -73,9 +72,8 @@ class RegisterFragment : Fragment() {
     }
 
     private fun navigateToHome() {
-        val bundle = Bundle()
-        bundle.putString(USER_ID, viewModel.currentUser?.uid.orEmpty())
-        findNavController().navigate(R.id.homeFragment, bundle)
+        findNavController()
+            .navigate(RegisterFragmentDirections.actionRegisterFragmentToHomeFragment())
     }
 
     private fun getUserObj(): User {

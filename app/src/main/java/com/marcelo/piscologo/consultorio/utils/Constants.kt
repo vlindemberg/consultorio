@@ -10,7 +10,7 @@ object FireDatabase{
 }
 
 object FireStoreDocumentField {
-    val USER_ID = "user_id"
+    val USER_ID = "userId"
     val NAME = "name"
 }
 

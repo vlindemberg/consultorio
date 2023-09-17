@@ -1,9 +1,10 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/background"
     android:fontFamily="@font/josefinsans_regular"
     android:labelFor="@+id/etNewPatientCty"
     android:padding="14dp"
     android:text="@string/new_patient_state"
     android:textColor="@color/primary"
-    android:textSize="16sp" />
+    android:textSize="18sp" />

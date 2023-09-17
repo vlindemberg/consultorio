@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Consultorio" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Clinic" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary_variant</item>
@@ -18,4 +18,12 @@
         <item name="android:fontFamily">@font/josefinsans_bold</item>
         <item name="android:textSize">16sp</item>
     </style>
+
+    <style name="Theme.Clinic.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Clinic.AppBarOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="Theme.Clinic.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 </resources>

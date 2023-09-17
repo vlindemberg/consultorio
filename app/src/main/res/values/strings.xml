@@ -50,33 +50,46 @@
     <string name="register_new_patient">Novo paciente</string>
     <string name="register_new_patient_description">Adiciona novo paciente</string>
     <string name="empty_list_description">Lista Vazia</string>
+    <string name="settings_edit_profile">Editar Perfil</string>
+    <string name="settings_edit_password">Alterar senha</string>
+    <string name="blank" />
+    <string name="select_civil_status">Selecione estado civil</string>
+    <string name="new_patient_civil_status">Estado Civil</string>
+    <string name="patients_remove_dialgo_title">Você tem certeza de que deseja remover esse paciente?</string>
     <string-array name="states">
-        <item>Acre-AC</item>
-        <item>Alagoas-AL</item>
-        <item>Amapá-AP</item>
-        <item>Amazonas-AM</item>
-        <item>Bahia-BA</item>
-        <item>Ceará-CE</item>
-        <item>Espírito Santo-ES</item>
-        <item>Goiás-GO</item>
-        <item>Maranhão-MA</item>
-        <item>Mato Grosso-MT</item>
-        <item>Mato Grosso do Sul-MS</item>
-        <item>Minas Gerais-MG</item>
-        <item>Pará-PA</item>
-        <item>Paraíba-PB</item>
-        <item>Paraná-PR</item>
-        <item>Pernambuco-PE</item>
-        <item>Piauí-PI</item>
-        <item>Rio de Janeiro-RJ</item>
-        <item>Rio Grande do Norte-RN</item>
-        <item>Rio Grande do Sul-RS</item>
-        <item>Rondônia-RO</item>
-        <item>Roraima-RR</item>
-        <item>Santa Catarina-SC</item>
-        <item>São Paulo-SP</item>
-        <item>Sergipe-SE</item>
-        <item>Tocantins-TO</item>
-        <item>Distrito Federal-DF</item>
+        <item>AC</item>
+        <item>AL</item>
+        <item>AP</item>
+        <item>AM</item>
+        <item>BA</item>
+        <item>CE</item>
+        <item>ES</item>
+        <item>GO</item>
+        <item>MA</item>
+        <item>MT</item>
+        <item>MS</item>
+        <item>MG</item>
+        <item>PA</item>
+        <item>PB</item>
+        <item>PR</item>
+        <item>PE</item>
+        <item>PI</item>
+        <item>RJ</item>
+        <item>RN</item>
+        <item>RS</item>
+        <item>RO</item>
+        <item>RR</item>
+        <item>SC</item>
+        <item>SP</item>
+        <item>SE</item>
+        <item>TO</item>
+        <item>DF</item>
+    </string-array>
+    <string-array name="civil_status">
+        <item>Solteiro</item>
+        <item>Casado</item>
+        <item>Separado</item>
+        <item>Divorciado</item>
+        <item>Viúvo</item>
     </string-array>
 </resources>

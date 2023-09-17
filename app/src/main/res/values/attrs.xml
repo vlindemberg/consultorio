@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <declare-styleable name="ProfileButton" tools:ignore="ResourceName">
+        <attr name="title" format="string" />
+        <attr name="subtitle" format="string" />
+        <attr name="icon" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="LogoutButton">
+        <attr name="logoutTitle" format="string" />
+        <attr name="logoutSubtitle" format="string" />
+        <attr name="logoutIcon" format="reference" />
+    </declare-styleable>
+</resources>

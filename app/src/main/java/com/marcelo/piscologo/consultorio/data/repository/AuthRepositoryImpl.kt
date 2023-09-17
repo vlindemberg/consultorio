@@ -8,6 +8,8 @@ import com.marcelo.piscologo.consultorio.data.model.User
 import com.marcelo.piscologo.consultorio.domain.repository.AuthRepository
 import com.marcelo.piscologo.consultorio.presentation.authentication.AuthenticationState
 import com.marcelo.piscologo.consultorio.utils.FireStoreCollection
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class AuthRepositoryImpl(
     private val auth: FirebaseAuth,
@@ -25,6 +27,16 @@ class AuthRepositoryImpl(
             val result = auth.signInWithEmailAndPassword(email, password).await()
             val user = getLoggedUser(result.user?.uid.orEmpty())
             AuthenticationState.Success(user)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            AuthenticationState.Failure(e)
+        }
+    }
+
+    override suspend fun validateSession(userId: String): AuthenticationState<*> {
+        return try {
+            val user = database.collection(FireStoreCollection.USER).document(userId).get().await()
+            AuthenticationState.Success(user.toObject(User::class.java))
         } catch (e: Exception) {
             e.printStackTrace()
             AuthenticationState.Failure(e)
@@ -85,8 +97,11 @@ class AuthRepositoryImpl(
 
     override suspend fun logout(): AuthenticationState<*> {
         return try {
-            auth.signOut()
-            AuthenticationState.Success(true)
+            withContext(Dispatchers.IO) {
+                Thread.sleep(1500)
+                auth.signOut()
+                AuthenticationState.Success(true)
+            }
         } catch (e: Exception) {
             AuthenticationState.Failure(e)
         }
