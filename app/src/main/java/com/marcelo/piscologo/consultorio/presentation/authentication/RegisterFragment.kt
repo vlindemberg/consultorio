@@ -82,6 +82,7 @@ class RegisterFragment : Fragment() {
             name = binding.etRegisterName.text.toString(),
             surname = binding.etRegisterSurname.text.toString(),
             email = binding.etRegisterEmail.text.toString(),
+            photo = null
         )
     }
 }

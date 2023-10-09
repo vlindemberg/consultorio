@@ -1,5 +1,6 @@
 package com.marcelo.piscologo.consultorio.data.model
 
+import android.net.Uri
 import android.os.Parcelable
 import com.google.firebase.firestore.PropertyName
 import kotlinx.parcelize.Parcelize
@@ -14,6 +15,8 @@ data class User(
     val surname: String,
     @PropertyName("email")
     val email: String,
+    @PropertyName("photo")
+    var photo: String?,
 ) : Parcelable {
-    constructor() : this("", "", "", "")
+    constructor() : this("", "", "", "", null)
 }

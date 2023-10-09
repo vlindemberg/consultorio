@@ -103,7 +103,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.marcelo.piscologo.consultorio.presentation.settings.SettingsFragment"
+        android:name="com.marcelo.piscologo.consultorio.presentation.authentication.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings">
         <action

@@ -1,8 +1,11 @@
 package com.marcelo.piscologo.consultorio.data.repository
 
+import android.net.Uri
+import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.StorageReference
 import com.marcelo.piscologo.consultorio.data.extensions.await
 import com.marcelo.piscologo.consultorio.data.model.User
 import com.marcelo.piscologo.consultorio.domain.repository.AuthRepository
@@ -10,10 +13,12 @@ import com.marcelo.piscologo.consultorio.presentation.authentication.Authenticat
 import com.marcelo.piscologo.consultorio.utils.FireStoreCollection
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.util.Date
 
 class AuthRepositoryImpl(
     private val auth: FirebaseAuth,
     private val database: FirebaseFirestore,
+    private val storageReference: StorageReference
 ) : AuthRepository {
 
     override val currentUser: FirebaseUser?
@@ -93,6 +98,35 @@ class AuthRepositoryImpl(
             e.printStackTrace()
             AuthenticationState.Failure(e)
         }
+    }
+
+    override suspend fun uploadPhoto(photoUri: Uri, user: User): AuthenticationState<*> {
+        var state: AuthenticationState<*> = AuthenticationState.Failure(IllegalArgumentException())
+        try {
+            val uri: Uri = withContext(Dispatchers.IO) {
+                storageReference
+                    .child("Users")
+                    .child(Date().time.toString())
+                    .putFile(photoUri)
+                    .await()
+                    .storage
+                    .downloadUrl
+                    .await()
+            }
+            user.photo = uri.toString()
+            updateUserInfo(user) {
+                state = when (it) {
+                    is AuthenticationState.Success -> AuthenticationState.Success(user)
+                    is AuthenticationState.Failure -> AuthenticationState.Failure(it.exception)
+                    else -> AuthenticationState.Failure(IllegalArgumentException())
+                }
+            }
+        } catch (e: FirebaseException) {
+            state = AuthenticationState.Failure(e)
+        } catch (e: Exception) {
+            state = AuthenticationState.Failure(e)
+        }
+        return state
     }
 
     override suspend fun logout(): AuthenticationState<*> {

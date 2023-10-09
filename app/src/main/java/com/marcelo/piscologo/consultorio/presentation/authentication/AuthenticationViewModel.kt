@@ -1,5 +1,6 @@
 package com.marcelo.piscologo.consultorio.presentation.authentication
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
@@ -31,6 +32,9 @@ class AuthenticationViewModel @Inject constructor(
 
     private val _logout = MutableStateFlow<AuthenticationState<*>?>(null)
     val logout: StateFlow<AuthenticationState<*>?> = _logout
+
+    private val _uploadPhoto = MutableStateFlow<AuthenticationState<*>?>(null)
+    val uploadPhoto: StateFlow<AuthenticationState<*>?> = _uploadPhoto
 
     val currentUser: FirebaseUser?
         get() = repository.currentUser
@@ -68,6 +72,11 @@ class AuthenticationViewModel @Inject constructor(
             password = password,
             user = user
         )
+    }
+
+    fun uploadPhoto(photoUri: Uri, user: User) = viewModelScope.launch {
+        _uploadPhoto.value = AuthenticationState.Loading
+        _uploadPhoto.value = repository.uploadPhoto(photoUri, user)
     }
 
     fun forgotPassword(email: String) = viewModelScope.launch {
